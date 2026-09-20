@@ -1,0 +1,41 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Decaid",
+        "description": "Local Decaid app URL. Token is optional.",
+        "data": {
+          "url": "Decaid URL",
+          "token": "API token (optional)"
+        }
+      },
+      "reconfigure": {
+        "title": "Decaid",
+        "description": "Local Decaid app URL. Token is optional.",
+        "data": {
+          "url": "Decaid URL",
+          "token": "API token (optional)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect",
+      "invalid_auth": "Token rejected",
+      "invalid_url": "Invalid URL"
+    },
+    "abort": {
+      "already_configured": "Already configured",
+      "reconfigure_successful": "Configuration updated"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "poll_interval": "REST polling interval (seconds)",
+          "emit_events": "Emit core stream events"
+        }
+      }
+    }
+  }
+}

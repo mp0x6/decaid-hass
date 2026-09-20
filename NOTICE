@@ -1,0 +1,12 @@
+Decaid Home Assistant integration — GPL-3.0-or-later.
+
+The endpoint catalogue and API endpoint descriptions are derived from the
+Decaid OpenAPI/AsyncAPI specifications:
+https://github.com/decentespresso/decaid
+Commit: a6e2a0594c8a3cd96c58a75279d2b8a2f29a1651
+Copyright (C) 2025-2026 Decent Espresso
+Upstream license: GPL-3.0-or-later.
+
+The Python integration is newly implemented; Decaid application source code
+is not bundled. Decent Espresso names identify the compatible product and
+do not imply endorsement.

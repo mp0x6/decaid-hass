@@ -1,0 +1,14 @@
+{
+  "domain": "decaid",
+  "name": "Decaid",
+  "version": "0.1.0",
+  "config_flow": true,
+  "documentation": "https://github.com/mp0x6/decaid-hass",
+  "iot_class": "local_push",
+  "integration_type": "hub",
+  "requirements": [],
+  "codeowners": [
+    "@mp0x6"
+  ],
+  "issue_tracker": "https://github.com/mp0x6/decaid-hass/issues"
+}

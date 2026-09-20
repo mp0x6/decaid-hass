@@ -1,0 +1,41 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Decaid",
+        "description": "URL der Decaid-App im lokalen Netz. Token nur bei Bedarf.",
+        "data": {
+          "url": "Decaid URL",
+          "token": "API token (optional)"
+        }
+      },
+      "reconfigure": {
+        "title": "Decaid",
+        "description": "URL der Decaid-App im lokalen Netz. Token nur bei Bedarf.",
+        "data": {
+          "url": "Decaid URL",
+          "token": "API token (optional)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Verbindung fehlgeschlagen",
+      "invalid_auth": "Token abgelehnt",
+      "invalid_url": "Ungültige URL"
+    },
+    "abort": {
+      "already_configured": "Bereits eingerichtet",
+      "reconfigure_successful": "Konfiguration aktualisiert"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "poll_interval": "REST-Abfrageintervall (Sekunden)",
+          "emit_events": "Live-Daten als Ereignisse ausgeben"
+        }
+      }
+    }
+  }
+}

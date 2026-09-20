@@ -1,0 +1,1051 @@
+{
+  "source_commit": "a6e2a0594c8a3cd96c58a75279d2b8a2f29a1651",
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/api/v1/devices",
+      "summary": "Get Available Devices",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/devices/forget",
+      "summary": "Forget a remembered device",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/devices/scan",
+      "summary": "Scan for Devices",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/devices/connect",
+      "summary": "Connect to specified device",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/devices/disconnect",
+      "summary": "Disconnect a specified device",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/devices/wifi",
+      "summary": "List manually-added WiFi scale endpoints",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/devices/wifi",
+      "summary": "Add a manual WiFi scale endpoint",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/devices/wifi",
+      "summary": "Remove a manual WiFi scale endpoint",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/machine/info",
+      "summary": "Retrieves the current Machine information",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/machine/state",
+      "summary": "Get Machine State",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/machine/state/{newState}",
+      "summary": "Request Machine State Change",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/machine/profile",
+      "summary": "Set Machine Profile",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/machine/shotSettings",
+      "summary": "Update Shot Settings",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/machine/capabilities",
+      "summary": "List machine capabilities",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/machine/cupWarmer",
+      "summary": "Get cup-warmer state",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/machine/cupWarmer",
+      "summary": "Set cup-warmer setpoint and/or manual enable",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/machine/cupWarmer/preheat",
+      "summary": "Get scheduled pre-warm state",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/machine/cupWarmer/preheat",
+      "summary": "Set scheduled pre-warm configuration",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/machine/ledStrip",
+      "summary": "Get LED strip configuration",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/machine/ledStrip",
+      "summary": "Set LED strip configuration",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/machine/ledStrip/commit",
+      "summary": "Commit LED strip config to NVM (compatibility no-op)",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/machine/ledStrip/reset",
+      "summary": "Reload LED strip config from the firmware",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/machine/scaleCalibration",
+      "summary": "Get scale-calibration state",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/machine/scaleCalibration",
+      "summary": "Start a scale-calibration step",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/machine/settings",
+      "summary": "Get machine settings",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/machine/settings",
+      "summary": "Set machine settings",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/machine/settings/advanced",
+      "summary": "Get advanced machine settings",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/machine/settings/advanced",
+      "summary": "Set advanced machine settings",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/machine/settings/reset",
+      "summary": "Reset machine settings to defaults",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/machine/calibration",
+      "summary": "Get machine calibration settings",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/machine/calibration",
+      "summary": "Set machine calibration settings",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/machine/calibration/{target}",
+      "summary": "Read DE1 sensor calibration",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/machine/calibration/{target}",
+      "summary": "Write DE1 sensor calibration",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/machine/waterLevels",
+      "summary": "Set water level refill threshold. Only the refillLevel field is used.",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/machine/firmware",
+      "summary": "Get firmware catalog and update availability",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/machine/firmware",
+      "summary": "Push raw firmware to the machine (developer/recovery)",
+      "request_types": [
+        "application/octet-stream"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/machine/firmware",
+      "summary": "Cancel an in-progress firmware update",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/machine/firmware/apply",
+      "summary": "Apply a managed firmware artifact",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/scale/info",
+      "summary": "Get connected scale information",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/scale/tare",
+      "summary": "Tare Scale",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/scales/{id}/tare",
+      "summary": "Tare a connected scale by device id",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/scale/timer/start",
+      "summary": "Start Scale Timer",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/scale/timer/stop",
+      "summary": "Stop Scale Timer",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/scale/timer/reset",
+      "summary": "Reset Scale Timer",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/sensors",
+      "summary": "Get a list of sensor devices connected to Decent",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/sensors/{id}",
+      "summary": "Get full manifest for a sensor",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/sensors/{id}/execute",
+      "summary": "Execute a sensor command",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/settings",
+      "summary": "Get Decent settings",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/settings",
+      "summary": "Update Decent settings",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workflow",
+      "summary": "Get current workflow",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/workflow",
+      "summary": "Update current workflow",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/shots",
+      "summary": "List shots (paginated and filtered)",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/shots/ids",
+      "summary": "Get a list of identifiers of all the shots",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/shots/latest",
+      "summary": "Get the latest shot metadata",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/shots/{id}",
+      "summary": "Get a specific shot by ID",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/shots/{id}",
+      "summary": "Update a shot record",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/shots/{id}",
+      "summary": "Delete a shot record",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/steams",
+      "summary": "List all steam records",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/steams/ids",
+      "summary": "List steam record IDs",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/steams/latest",
+      "summary": "Get the most recent steam record (metadata only)",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/steams/{id}",
+      "summary": "Get a specific steam record by ID",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/steams/{id}",
+      "summary": "Update a steam record's annotations",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/steams/{id}",
+      "summary": "Delete a steam record",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/beans",
+      "summary": "List all beans",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/beans",
+      "summary": "Create a new bean",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/beans/{id}",
+      "summary": "Get bean by ID",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/beans/{id}",
+      "summary": "Update a bean",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/beans/{id}",
+      "summary": "Delete a bean",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/beans/{beanId}/batches",
+      "summary": "List batches for a bean",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/beans/{beanId}/batches",
+      "summary": "Create a new batch for a bean",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/bean-batches",
+      "summary": "List all bean batches",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/bean-batches/{id}",
+      "summary": "Get a batch by ID",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/bean-batches/{id}",
+      "summary": "Update a batch",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/bean-batches/{id}",
+      "summary": "Delete a batch",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/grinders",
+      "summary": "List all grinders",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/grinders",
+      "summary": "Create a new grinder",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/grinders/{id}",
+      "summary": "Get grinder by ID",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/grinders/{id}",
+      "summary": "Update a grinder",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/grinders/{id}",
+      "summary": "Delete a grinder",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/store/{namespace}",
+      "summary": "List keys in a namespace, or read the whole namespace with `?full=1`",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/store/{namespace}/{key}",
+      "summary": "Get value for a key",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/store/{namespace}/{key}",
+      "summary": "Set value for a key",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/store/{namespace}/{key}",
+      "summary": "Delete key",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/plugins",
+      "summary": "List all plugins",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/plugins/{id}/settings",
+      "summary": "Fetch settings for specific plugin",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/plugins/{id}/settings",
+      "summary": "Save settings for specific plugin",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/plugins/{id}/enable",
+      "summary": "Enable a plugin",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/plugins/{id}/disable",
+      "summary": "Disable a plugin",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/plugins/{id}/source",
+      "summary": "Create or overwrite a plugin's manifest and source",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/plugins/{id}",
+      "summary": "Delete a plugin",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/plugins/{id}/{endpoint}",
+      "summary": "Call a plugin HTTP endpoint",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/plugins/install",
+      "summary": "Install a plugin from URL (not supported)",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/plugins/install/github-release",
+      "summary": "Install a plugin from a GitHub release",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/plugins/install/github-branch",
+      "summary": "Install a plugin from a GitHub branch",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/plugins/update",
+      "summary": "Check every GitHub-backed plugin for updates",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/plugins/{id}/update/approve",
+      "summary": "Approve and install a permission-escalating update",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/profiles",
+      "summary": "Get all profiles",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/profiles",
+      "summary": "Create new profile",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/profiles/{id}",
+      "summary": "Get profile by ID",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/profiles/{id}",
+      "summary": "Update profile",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/profiles/{id}",
+      "summary": "Delete profile",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/profiles/{id}/visibility",
+      "summary": "Change profile visibility",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/profiles/{id}/lineage",
+      "summary": "Get profile lineage",
+      "request_types": []
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/profiles/{id}/purge",
+      "summary": "Permanently delete profile",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/profiles/import",
+      "summary": "Import profiles",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/profiles/export",
+      "summary": "Export profiles",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/profiles/restore/{filename}",
+      "summary": "Restore default profile",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/profiles/defaults",
+      "summary": "List bundled default profiles",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/webui/skins",
+      "summary": "List all installed WebUI skins",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/webui/skins/{id}",
+      "summary": "Get specific WebUI skin details",
+      "request_types": []
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/webui/skins/{id}",
+      "summary": "Remove/uninstall a WebUI skin",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/webui/skins/default",
+      "summary": "Get the default WebUI skin",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/webui/skins/default",
+      "summary": "Set the default WebUI skin",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/webui/skins/install/github-release",
+      "summary": "Install skin from GitHub Release",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/webui/skins/install/github-branch",
+      "summary": "Install skin from GitHub branch",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/webui/skins/install/url",
+      "summary": "Install skin from URL",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/webui/skins/update",
+      "summary": "Check for skin updates",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/webui/server/status",
+      "summary": "Get WebUI server status",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/webui/server/start",
+      "summary": "Start the WebUI server",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/webui/server/stop",
+      "summary": "Stop the WebUI server",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/webui/skin-assets/{id}/{filepath}",
+      "summary": "Fetch an asset from an installed skin",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/machine/heartbeat",
+      "summary": "Signal user presence",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/presence/settings",
+      "summary": "Get presence and wake schedule settings",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/presence/settings",
+      "summary": "Update presence settings",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/presence/schedules",
+      "summary": "Get all wake schedules",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/presence/schedules",
+      "summary": "Add a new wake schedule",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/presence/schedules/{id}",
+      "summary": "Update a wake schedule",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/presence/schedules/{id}",
+      "summary": "Delete a wake schedule",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/display",
+      "summary": "Get current display state",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/display/brightness",
+      "summary": "Set screen brightness",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/display/wakelock",
+      "summary": "Request wake-lock override",
+      "request_types": []
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/display/wakelock",
+      "summary": "Release wake-lock override",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/data/export",
+      "summary": "Export all app data",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/data/import",
+      "summary": "Import app data from archive",
+      "request_types": [
+        "application/zip"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/data/sync",
+      "summary": "Sync data between Decaid instances",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/info",
+      "summary": "Get build information",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/diagnostics/ble",
+      "summary": "Read-only BLE reconnect diagnostics",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/update",
+      "summary": "Get app update state",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/logs",
+      "summary": "Get recent log entries",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/webview/logs",
+      "summary": "Get WebView console logs",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/debug/flow-smoothing",
+      "summary": "Get runtime display-flow smoothing (debug builds only)",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/debug/flow-smoothing",
+      "summary": "Set runtime display-flow smoothing (debug builds only)",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/debug/scale/{command}",
+      "summary": "Control mock scale (simulate mode only)",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/debug/machine/{command}",
+      "summary": "Control mock machine (simulate mode only)",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/debug/replay/shots",
+      "summary": "List replay recordings and current selection (simulate=replay only)",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/debug/replay/shot/{id}",
+      "summary": "Force a replay recording for subsequent pulls (simulate=replay only)",
+      "request_types": []
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/debug/replay/shot",
+      "summary": "Clear the forced replay recording (simulate=replay only)",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/feedback",
+      "summary": "Submit feedback",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/account/decent",
+      "summary": "Decent account auth status",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/account/proxy/support/api/{endpoint}",
+      "summary": "Auth-enriching proxy to the Decent backend",
+      "request_types": []
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/account/proxy/support/api/{endpoint}",
+      "summary": "Auth-enriching write proxy to the Decent backend",
+      "request_types": [
+        "application/octet-stream"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/account/proxy/support/api/{endpoint}",
+      "summary": "Auth-enriching write proxy to the Decent backend",
+      "request_types": [
+        "application/octet-stream"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/derek/answers/stream",
+      "summary": "Relay to the Derek RAG assistant (streaming)",
+      "request_types": [
+        "application/json"
+      ]
+    }
+  ],
+  "channels": [
+    "ws/v1/machine/snapshot",
+    "ws/v1/machine/shotSettings",
+    "ws/v1/machine/waterLevels",
+    "ws/v1/scale/snapshot",
+    "ws/v1/scales/{id}/snapshot",
+    "ws/v1/machine/raw",
+    "ws/v1/machine/shotState",
+    "ws/v1/sensors/{id}/snapshot",
+    "ws/v1/plugins/{id}/{endpoint}",
+    "ws/v1/logs",
+    "ws/v1/webview/logs",
+    "ws/v1/devices",
+    "ws/v1/display",
+    "ws/v1/update"
+  ]
+}

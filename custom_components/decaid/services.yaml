@@ -1,0 +1,100 @@
+api_request:
+  name: Api Request
+  description: Call a documented Decaid REST operation. Optional response_variable
+    receives result.
+  fields:
+    entry_id: &id001
+      required: true
+      selector:
+        config_entry:
+          integration: decaid
+    method:
+      required: true
+      selector:
+        select:
+          options:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+    path:
+      required: true
+      example: /api/v1/workflow
+      selector:
+        text: {}
+    body:
+      selector:
+        object: {}
+    query:
+      selector:
+        object: {}
+    body_base64:
+      selector:
+        text:
+          multiline: true
+    content_type:
+      selector:
+        text: {}
+set_state:
+  name: Set State
+  description: Request a machine state.
+  fields:
+    entry_id: *id001
+    state:
+      required: true
+      selector:
+        select:
+          options:
+          - idle
+          - sleeping
+          - espresso
+          - steam
+          - hotWater
+          - flush
+          - steamRinse
+          - skipStep
+          - cleaning
+          - descaling
+          - airPurge
+set_workflow:
+  name: Set Workflow
+  description: Deep-merge a workflow patch.
+  fields:
+    entry_id: *id001
+    workflow:
+      required: true
+      selector:
+        object: {}
+subscribe:
+  name: Subscribe
+  description: Subscribe to an additional WebSocket; emits decaid_message events.
+    Reapply after restart.
+  fields:
+    entry_id: *id001
+    channel:
+      required: true
+      selector:
+        text: {}
+unsubscribe:
+  name: Unsubscribe
+  description: Stop an additional WebSocket subscription.
+  fields:
+    entry_id: *id001
+    channel:
+      required: true
+      selector:
+        text: {}
+websocket_send:
+  name: Websocket Send
+  description: Send a command on a connected subscription. No automatic retry.
+  fields:
+    entry_id: *id001
+    channel:
+      required: true
+      selector:
+        text: {}
+    message:
+      required: true
+      selector:
+        object: {}
