@@ -1,4 +1,5 @@
 import base64
+import json
 import re
 
 import aiohttp
@@ -27,7 +28,17 @@ async def server():
             ws = web.WebSocketResponse()
             await ws.prepare(request)
             sockets.append(ws)
-            await ws.send_json({"pressure": 9, "state": {"state": "idle"}})
+            if request.path == "/ws/v1/grinder/snapshot":
+                await ws.send_json(
+                    {
+                        "timestamp": "2026-10-04T08:00:00Z",
+                        "state": "grinding",
+                        "setting": "2.5",
+                        "rpm": 800,
+                    }
+                )
+            else:
+                await ws.send_json({"pressure": 9, "state": {"state": "idle"}})
             async for msg in ws:
                 if msg.type == aiohttp.WSMsgType.TEXT:
                     await ws.send_str(msg.data)
@@ -102,7 +113,8 @@ def test_catalog_path_boundary(path):
 
 def test_all_catalog_routes_are_addressable():
     catalog = load_catalog()
-    assert len(catalog["operations"]) == 153
+    assert len(catalog["operations"]) == 159
+    assert len(catalog["channels"]) == 15
     for op in catalog["operations"]:
         path = re.sub(r"\{[^}]+\}", "test", op["path"])
         assert validate_path(path, [op["path"]]) == path
@@ -175,3 +187,43 @@ async def test_ambiguous_body_is_rejected_before_sending(server):
     with pytest.raises(DecaidError, match="either"):
         await client.request("PUT", "/api/v1/workflow", body={}, body_base64="AA==")
     assert calls == []
+
+
+@pytest.mark.parametrize(
+    ("method", "path", "body"),
+    [
+        ("GET", "/api/v1/grinder/info", None),
+        ("GET", "/api/v1/grinder/state", None),
+        ("PUT", "/api/v1/grinder/state/grinding", None),
+        ("PUT", "/api/v1/grinder/state/idle", None),
+        ("PUT", "/api/v1/grinder/setting", {"setting": "2.5"}),
+        ("PUT", "/api/v1/grinder/rpm", {"rpm": 800}),
+    ],
+)
+async def test_runtime_grinder_requests_reach_server(server, method, path, body):
+    client, calls = server
+    await client.request(method, path, body=body)
+    assert len(calls) == 1
+    assert calls[0][:2] == (method, path)
+    assert (json.loads(calls[0][2]) if calls[0][2] else None) == body
+
+
+async def test_grinder_snapshot_subscription(server):
+    client, calls = server
+    async with await client.websocket("/ws/v1/grinder/snapshot") as ws:
+        frame = await ws.receive_json()
+        assert frame == {
+            "timestamp": "2026-10-04T08:00:00Z",
+            "state": "grinding",
+            "setting": "2.5",
+            "rpm": 800,
+        }
+    assert calls[0][1] == "/ws/v1/grinder/snapshot"
+
+
+async def test_preferred_runtime_grinder_setting(server):
+    client, calls = server
+    await client.request(
+        "POST", "/api/v1/settings", body={"preferredGrinderDeviceId": "plugin:example:grinder:one"}
+    )
+    assert json.loads(calls[-1][2]) == {"preferredGrinderDeviceId": "plugin:example:grinder:one"}

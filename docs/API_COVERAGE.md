@@ -1,8 +1,10 @@
 # API coverage
 
-Source: decentespresso/decaid at `a6e2a0594c8a3cd96c58a75279d2b8a2f29a1651`.
+Source: decentespresso/decaid at `a45961b323831d2170b3e7f3fef7c72fdd341642`.
 
-152 of the 153 listed REST operations are reachable through `decaid.api_request`; `POST /api/v1/derek/answers/stream` is explicitly unsupported (SSE). Bodies are passed through; server validation applies. Binary bodies and responses use base64. Streaming HTTP responses are intentionally unsupported.
+158 of 159 REST operations are addressable through `decaid.api_request`. `POST /api/v1/derek/answers/stream` is unsupported (SSE). This is transport coverage, not a separate HA entity for every parameter. Bodies pass through to server validation; binary bodies/responses use base64. The 45-second timeout and 8 MiB response limit still apply.
+
+Runtime grinder routes and its WebSocket require a Decaid build containing the grinder API; they are absent from v0.8.7 and v0.8.8-beta.2. See [API changes](API_CHANGES.md).
 
 | Method | Path | Operation | Request types |
 |---|---|---|---|
@@ -50,6 +52,12 @@ Source: decentespresso/decaid at `a6e2a0594c8a3cd96c58a75279d2b8a2f29a1651`.
 | PUT | `/api/v1/scale/timer/start` | Start Scale Timer |  |
 | PUT | `/api/v1/scale/timer/stop` | Stop Scale Timer |  |
 | PUT | `/api/v1/scale/timer/reset` | Reset Scale Timer |  |
+| GET | `/api/v1/grinder/info` | Get connected grinder information |  |
+| GET | `/api/v1/grinder/state` | Get connected grinder state |  |
+| PUT | `/api/v1/grinder/state/grinding` | Start the connected grinder |  |
+| PUT | `/api/v1/grinder/state/idle` | Stop the connected grinder |  |
+| PUT | `/api/v1/grinder/setting` | Set the connected grinder setting | application/json |
+| PUT | `/api/v1/grinder/rpm` | Set the connected grinder RPM | application/json |
 | GET | `/api/v1/sensors` | Get a list of sensor devices connected to Decent |  |
 | GET | `/api/v1/sensors/{id}` | Get full manifest for a sensor |  |
 | POST | `/api/v1/sensors/{id}/execute` | Execute a sensor command | application/json |
@@ -162,12 +170,13 @@ Source: decentespresso/decaid at `a6e2a0594c8a3cd96c58a75279d2b8a2f29a1651`.
 
 ## WebSockets
 
-Every channel can be subscribed to with `decaid.subscribe`; incoming frames produce `decaid_message` events. Bidirectional commands use `decaid.websocket_send`. Parameterized paths must be resolved by the caller.
+Every channel can be subscribed to with `decaid.subscribe`; additional subscriptions emit `decaid_message`. Core-stream events are opt-in. Only bidirectional channels accept `decaid.websocket_send`. The grinder snapshot stream is receive-only. Resolve parameterized paths before calling.
 
 - `/ws/v1/machine/snapshot`
 - `/ws/v1/machine/shotSettings`
 - `/ws/v1/machine/waterLevels`
 - `/ws/v1/scale/snapshot`
+- `/ws/v1/grinder/snapshot`
 - `/ws/v1/scales/{id}/snapshot`
 - `/ws/v1/machine/raw`
 - `/ws/v1/machine/shotState`

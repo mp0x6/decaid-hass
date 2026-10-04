@@ -2,7 +2,7 @@
 
 Validated in Python 3.13.15 with Home Assistant 2025.12.5.
 
-- 22 pytest cases passed.
+- 30 pytest cases passed (2026-10-04, integration 0.1.1).
 - Ruff check passed.
 - Actual HA integration loader, config entry setup, six entity platforms,
   service registration, workflow mutation, response data, duplicate configuration,
@@ -19,5 +19,11 @@ Validated in Python 3.13.15 with Home Assistant 2025.12.5.
 One upstream aiohttp subclass deprecation warning occurs during HA import.
 No real espresso machine, Decaid executable, cloud account or firmware update was
 used in validation. Route-count tests verify catalogue accessibility, not the
-functional semantics of all 152 supported server operations. Current releases newer
+functional semantics of all 158 supported server operations. Current releases newer
 than the tested HA version have not been independently validated.
+
+Update 0.1.1 additionally verifies all six runtime grinder REST requests reach
+the local test server with correct verbs and bodies, receives the new grinder
+snapshot shape, and forwards preferredGrinderDeviceId unchanged. The generated
+catalogue/coverage document matches the pinned upstream specifications via
+`tools/sync_api_catalog.py --check`. Grinder hardware was not available.

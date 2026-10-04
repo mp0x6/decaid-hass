@@ -1,5 +1,5 @@
 {
-  "source_commit": "a6e2a0594c8a3cd96c58a75279d2b8a2f29a1651",
+  "source_commit": "a45961b323831d2170b3e7f3fef7c72fdd341642",
   "operations": [
     {
       "method": "GET",
@@ -304,6 +304,46 @@
       "path": "/api/v1/scale/timer/reset",
       "summary": "Reset Scale Timer",
       "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/grinder/info",
+      "summary": "Get connected grinder information",
+      "request_types": []
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/grinder/state",
+      "summary": "Get connected grinder state",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/grinder/state/grinding",
+      "summary": "Start the connected grinder",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/grinder/state/idle",
+      "summary": "Stop the connected grinder",
+      "request_types": []
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/grinder/setting",
+      "summary": "Set the connected grinder setting",
+      "request_types": [
+        "application/json"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/grinder/rpm",
+      "summary": "Set the connected grinder RPM",
+      "request_types": [
+        "application/json"
+      ]
     },
     {
       "method": "GET",
@@ -1037,6 +1077,7 @@
     "ws/v1/machine/shotSettings",
     "ws/v1/machine/waterLevels",
     "ws/v1/scale/snapshot",
+    "ws/v1/grinder/snapshot",
     "ws/v1/scales/{id}/snapshot",
     "ws/v1/machine/raw",
     "ws/v1/machine/shotState",

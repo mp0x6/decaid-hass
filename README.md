@@ -1,7 +1,7 @@
 # Decaid für Home Assistant
 
 Custom Integration für die lokale API der **Decent Espresso Decaid-App**.
-Version 0.1.0; Home Assistant ab 2025.12.0. Dies ist eine eigenständige,
+Version 0.1.1; Home Assistant ab 2025.12.0. Dies ist eine eigenständige,
 informelle Integration, kein offizielles Decent-Produkt und kein Supervisor-Add-on.
 Die Decaid-App läuft weiterhin auf dem Tablet und übernimmt die Geräteverbindung.
 
@@ -58,18 +58,18 @@ Profilbezeichnungen enthalten die stabile Profil-ID, damit gleiche Titel eindeut
 
 ## API-Abdeckung
 
-Basis: [`rest_v1.yml`](https://github.com/decentespresso/decaid/blob/a6e2a0594c8a3cd96c58a75279d2b8a2f29a1651/assets/api/rest_v1.yml)
-und [`websocket_v1.yml`](https://github.com/decentespresso/decaid/blob/a6e2a0594c8a3cd96c58a75279d2b8a2f29a1651/assets/api/websocket_v1.yml),
-Commit `a6e2a0594c8a3cd96c58a75279d2b8a2f29a1651`.
+Basis: [`rest_v1.yml`](https://github.com/decentespresso/decaid/blob/a45961b323831d2170b3e7f3fef7c72fdd341642/assets/api/rest_v1.yml)
+und [`websocket_v1.yml`](https://github.com/decentespresso/decaid/blob/a45961b323831d2170b3e7f3fef7c72fdd341642/assets/api/websocket_v1.yml),
+Commit `a45961b323831d2170b3e7f3fef7c72fdd341642`.
 
-**152 von 153 dokumentierten REST-Operationen sind durch eine allgemeine Aktion
+**158 von 159 dokumentierten REST-Operationen sind durch eine allgemeine Aktion
 adressierbar**, zusätzlich zu den Entitäten. Das ist Transport-Abdeckung; die
 Integration besitzt nicht für jeden Endpunkt ein eigenes Formular oder eine
 lokale vollständige Payload-Validierung. Funktionen, die einen bestimmten
 Maschinentyp, Debug-Build, Account, Token oder eine Zustimmung in Decaid benötigen,
 behalten diese Voraussetzungen.
 
-Alle **14 WebSocket-Kanaltypen** können abonniert werden. Sieben Kernkanäle
+Alle **15 WebSocket-Kanaltypen** können abonniert werden. Sieben Kernkanäle
 werden automatisch verbunden. Zusätzliche Sensoren, Waagen, Plugins, Rohdaten,
 Logs und Updates sind über parametrisierte Abonnements und Ereignisse erreichbar.
 Bidirektionale Nachrichten werden unverändert weitergegeben; erlaubte Befehle
@@ -80,6 +80,62 @@ Die vollständige Endpunktliste steht in [docs/API_COVERAGE.md](docs/API_COVERAG
 Beans, Batches, Grinder, Shot-/Steam-Historie, Profile-CRUD, Plugin-/Skin-Verwaltung,
 Gerätesuche, Kalibrierung, Firmware, Zeitpläne, Präsenz, Import/Export, Account-Proxy
 und Debug-Funktionen sind damit über Aktionen erreichbar.
+
+### Neu in 0.1.1: verbundene Mühle
+
+Geprüft am 04.10.2026: Neueste stabile Decaid-Version **0.8.7**, neueste
+Vorabversion **0.8.8-beta.2**. Beide besitzen dieselben 153 REST-Operationen und
+14 WebSocket-Kanaltypen wie unser bisheriger Katalog. Der oben referenzierte
+Entwicklungsstand `main` ergänzt sechs REST-Operationen und einen Kanal.
+Die Integration kennt diese bereits; nutzen lassen sie sich nur mit einem
+Decaid-Build, der die neue Mühlen-API enthält, und einem geeigneten Mühlentreiber.
+
+| Methode | Pfad | Zweck |
+|---|---|---|
+| GET | `/api/v1/grinder/info` | Laufzeit-Geräte-ID und Fähigkeiten |
+| GET | `/api/v1/grinder/state` | Zustand, optional Mahlgrad und Drehzahl |
+| PUT | `/api/v1/grinder/state/grinding` | Mahlen starten |
+| PUT | `/api/v1/grinder/state/idle` | Mahlen stoppen |
+| PUT | `/api/v1/grinder/setting` | Mahlgrad als String setzen |
+| PUT | `/api/v1/grinder/rpm` | Drehzahl als nichtnegative Ganzzahl setzen |
+
+Diese Funktionen stehen über `decaid.api_request` zur Verfügung. Beispielsweise:
+
+```yaml
+action: decaid.api_request
+data:
+  entry_id: DEINE_ENTRY_ID
+  method: PUT
+  path: /api/v1/grinder/setting
+  body:
+    setting: "2.5"
+```
+
+Für die Drehzahl `/api/v1/grinder/rpm` mit `body: {rpm: 800}` verwenden.
+Die tatsächlichen Einstellbereiche bestimmt der Mühlentreiber. Unter
+`/api/v1/grinder/info` geben `startStop`, `grindSetting` und `rpmControl` an,
+welche Funktionen unterstützt werden. `/api/v1/grinder` steuert eine tatsächlich
+verbundene Mühle; `/api/v1/grinders` verwaltet weiterhin gespeicherte Mühlendatensätze.
+
+Live-Daten können zusätzlich abonniert werden:
+
+```yaml
+action: decaid.subscribe
+data:
+  entry_id: DEINE_ENTRY_ID
+  channel: /ws/v1/grinder/snapshot
+```
+
+Die Frames erscheinen als `decaid_message`-Ereignisse mit `data.state` sowie,
+sofern unterstützt, `data.setting` und `data.rpm`. Der Kanal ist nur lesbar.
+Bei getrennter Mühle bleibt er offen und still; das Ausbleiben eines Frames ist
+keine Zustandsmeldung. Für Verfügbarkeit zusätzlich Geräteinventar oder REST
+prüfen. Neue Mühlen-Entitäten oder ein automatisches Abonnement werden durch
+dieses Update nicht angelegt. Ältere Decaid-Versionen werden somit nicht
+regelmäßig mit nicht vorhandenen Endpunkten abgefragt.
+
+Weitere Änderungen an bestehenden Parametern und Verhalten:
+[docs/API_CHANGES.md](docs/API_CHANGES.md).
 
 ### Grenzen
 
@@ -203,3 +259,12 @@ python3.13 -m venv .venv
 
 GitHub Actions prüft Änderungen mit pytest und Ruff.
 Repository: https://github.com/mp0x6/decaid-hass
+
+Der API-Katalog lässt sich reproduzierbar aus einem Decaid-Checkout aktualisieren:
+
+```bash
+python tools/sync_api_catalog.py /pfad/zu/decaid --ref COMMIT_ODER_TAG
+```
+
+Mit `--check` wird nur auf Abweichungen geprüft. Neue Schnittstellen müssen
+weiterhin fachlich geprüft und getestet werden.
